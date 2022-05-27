@@ -156,7 +156,7 @@ const track_order_status = [
     }
 ]
 
-const GOOGLE_MAP_API_KEY = "AIzaSyCz2_lRx0zTL7kxGVsU5l-2AgZCBkBxGuU"
+const GOOGLE_MAP_API_KEY = ""
 
 export default {
     onboarding_screens,
