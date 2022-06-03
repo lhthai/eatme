@@ -3,7 +3,7 @@ import React from 'react';
 import {Section, HorizontalFoodCard} from '.';
 import {SIZES} from '../../../constants';
 
-const RecommendSection = ({recommends}) => {
+const RecommendSection = ({recommends, navigation}) => {
   return (
     <Section
       title="Recommended"
@@ -29,7 +29,7 @@ const RecommendSection = ({recommends}) => {
               width: 150,
             }}
             item={item}
-            onPress={() => console.log('Pressed')}
+            onPress={() => navigation.navigate('FoodDetail', {foodItem: item})}
           />
         )}
       />

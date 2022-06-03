@@ -1,4 +1,4 @@
-import {StyleSheet, Text, FlatList, TouchableOpacity} from 'react-native';
+import {Text, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {COLORS, dummyData, FONTS, SIZES} from '../../../constants';
 
@@ -43,5 +43,3 @@ const MenuType = ({
 };
 
 export default MenuType;
-
-const styles = StyleSheet.create({});

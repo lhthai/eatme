@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
@@ -12,10 +12,13 @@ import {
   constants,
 } from '../../constants';
 import {setSelectedTab} from '../../store/tab/tabActions';
+import {AuthContext} from '../../context/AuthContext';
 
 const CustomDrawerContent = ({navigation}) => {
   const dispatch = useDispatch();
   const selectedTab = useSelector(state => state.tabReducer.selectedTab);
+  const {logout, currentUser} = useContext(AuthContext);
+
   return (
     <DrawerContentScrollView
       scrollEnabled={true}
@@ -47,7 +50,7 @@ const CustomDrawerContent = ({navigation}) => {
           />
           <View style={{marginLeft: SIZES.radius}}>
             <Text style={{color: COLORS.white, ...FONTS.h3}}>
-              {dummyData.myProfile?.name}
+              {currentUser.displayName}
             </Text>
             <Text style={{color: COLORS.white, ...FONTS.body4}}>
               View your profile
@@ -101,7 +104,11 @@ const CustomDrawerContent = ({navigation}) => {
           <CustomDrawerItem label="Help Center" icon={icons.help} />
         </View>
         <View style={{marginBottom: SIZES.padding}}>
-          <CustomDrawerItem label="Logout" icon={icons.logout} />
+          <CustomDrawerItem
+            label="Logout"
+            icon={icons.logout}
+            onPress={logout}
+          />
         </View>
       </View>
     </DrawerContentScrollView>

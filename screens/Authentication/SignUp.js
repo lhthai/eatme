@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
+import auth from '@react-native-firebase/auth';
 import {SIZES, icons, COLORS, images, FONTS} from '../../constants';
 import AuthLayout from './AuthLayout';
 import {FormInput, TextButton} from '../../components';
 import {utils} from '../../utils';
+import {AuthContext} from '../../context/AuthContext';
 
 const SignUp = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -14,6 +16,7 @@ const SignUp = ({navigation}) => {
   const [emailError, setEmailError] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const {signUp} = useContext(AuthContext);
 
   const isEnableSignUp = () => {
     return (
@@ -25,6 +28,20 @@ const SignUp = ({navigation}) => {
       passwordError == ''
     );
   };
+
+  // const handleSignUp = async () => {
+  //   try {
+  //     await auth().createUserWithEmailAndPassword(email, password);
+  //     await auth().onAuthStateChanged(user => {
+  //       if (user) {
+  //         user.updateProfile({displayName: username});
+  //       }
+  //     });
+  //     navigation.navigate('Home');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <AuthLayout
@@ -129,7 +146,7 @@ const SignUp = ({navigation}) => {
               ? COLORS.primary
               : COLORS.transparentPrimary,
           }}
-          onPress={() => navigation.navigate('Otp')}
+          onPress={() => signUp(email, password, username)}
         />
         <View
           style={{

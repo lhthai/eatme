@@ -3,7 +3,7 @@ import React from 'react';
 import {Section, VerticalFoodCard} from '.';
 import {SIZES} from '../../../constants';
 
-const PopularSection = ({popular}) => {
+const PopularSection = ({popular, navigation}) => {
   return (
     <Section
       title={'Popular Near You'}
@@ -20,7 +20,7 @@ const PopularSection = ({popular}) => {
               marginRight: index == popular.length - 1 ? SIZES.padding : 0,
             }}
             item={item}
-            onPress={() => console.log('Pressed')}
+            onPress={() => navigation.navigate('FoodDetail', {foodItem: item})}
           />
         )}
       />

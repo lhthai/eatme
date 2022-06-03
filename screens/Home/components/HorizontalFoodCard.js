@@ -10,7 +10,7 @@ const HorizontalFoodCard = ({containerStyle, imageStyle, item, onPress}) => {
         borderRadius: SIZES.radius,
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
-      }}>
+      }} onPress={onPress}>
       <Image source={item.image} style={imageStyle} />
       <View style={{flex: 1}}>
         <Text style={{...FONTS.h3, fontSize: 17}}>{item.name}</Text>

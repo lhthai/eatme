@@ -12,6 +12,7 @@ import {Notification, Home, CartTab, Favourite, Search} from './index';
 import {COLORS, constants, dummyData, icons, SIZES} from '../constants';
 import {Header, TabButton} from '../components';
 import {setSelectedTab} from '../store/tab/tabActions';
+import MyCart from './Cart/MyCart/MyCartScreen';
 
 const MainLayout = ({navigation}) => {
   const dispatch = useDispatch();
@@ -220,12 +221,20 @@ const MainLayout = ({navigation}) => {
           renderItem={({item, index}) => {
             return (
               <View style={{height: SIZES.height, width: SIZES.width}}>
-                {item.label == constants.screens.home && <Home />}
-                {item.label == constants.screens.search && <Search />}
-                {item.label == constants.screens.cart && <CartTab />}
-                {item.label == constants.screens.favourite && <Favourite />}
+                {item.label == constants.screens.home && (
+                  <Home navigation={navigation} />
+                )}
+                {item.label == constants.screens.search && (
+                  <Search navigation={navigation} />
+                )}
+                {item.label == constants.screens.cart && (
+                  <MyCart navigation={navigation} />
+                )}
+                {item.label == constants.screens.favourite && (
+                  <Favourite navigation={navigation} />
+                )}
                 {item.label == constants.screens.notification && (
-                  <Notification />
+                  <Notification navigation={navigation} />
                 )}
               </View>
             );

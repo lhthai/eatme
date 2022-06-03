@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {
@@ -11,6 +11,7 @@ import {
 import {COLORS, FONTS, icons, images, SIZES} from '../../constants';
 import AuthLayout from './AuthLayout';
 import {utils} from '../../utils';
+import {AuthContext} from '../../context/AuthContext';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -18,10 +19,20 @@ const SignIn = ({navigation}) => {
   const [emailError, setEmailError] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [saveMe, setSaveMe] = useState(false);
+  const {signIn} = useContext(AuthContext);
 
   const isEnableSignIn = () => {
     return email !== '' && password !== '' && emailError === '';
   };
+
+  // const handleSignIn = async () => {
+  //   try {
+  //     await auth().signInWithEmailAndPassword(email, password);
+  //     navigation.navigate('Home');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <AuthLayout
@@ -109,6 +120,7 @@ const SignIn = ({navigation}) => {
               ? COLORS.primary
               : COLORS.transparentPrimary,
           }}
+          onPress={() => signIn(email, password)}
         />
         <View
           style={{

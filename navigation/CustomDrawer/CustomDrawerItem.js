@@ -1,11 +1,9 @@
-import React, {useReducer} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import React  from 'react';
+import { Text, TouchableOpacity, Image} from 'react-native';
 
 import {COLORS, FONTS, SIZES} from '../../constants';
 
 const CustomDrawerItem = ({label, icon, isFocused, onPress}) => {
-  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       style={{

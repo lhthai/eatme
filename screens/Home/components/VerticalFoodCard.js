@@ -12,7 +12,8 @@ const VerticalFoodCard = ({containerStyle, item, onPress}) => {
         borderRadius: SIZES.radius,
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
-      }}>
+      }}
+      onPress={onPress}>
       <View style={{flexDirection: 'row'}}>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image source={icons.calories} style={{width: 30, height: 30}} />
@@ -48,7 +49,9 @@ const VerticalFoodCard = ({containerStyle, item, onPress}) => {
           }}>
           {item.description}
         </Text>
-        <Text style={{marginTop: SIZES.radius, ...FONTS.h2}}>${item.price}</Text>
+        <Text style={{marginTop: SIZES.radius, ...FONTS.h2}}>
+          ${item.price}
+        </Text>
       </View>
     </TouchableOpacity>
   );

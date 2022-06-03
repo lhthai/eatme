@@ -12,13 +12,12 @@ import {
   FilterModal,
 } from './components';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [menuList, setMenuList] = useState([]);
   const [recommends, setRecommends] = useState([]);
   const [popular, setPolular] = useState([]);
- 
 
   useEffect(() => {
     handleChangeCategory(selectedCategoryId, selectedMenuType);
@@ -45,7 +44,6 @@ const Home = () => {
         flex: 1,
       }}>
       <SearchBox />
-     
 
       <FlatList
         data={menuList}
@@ -60,8 +58,8 @@ const Home = () => {
               selectedMenuType={selectedMenuType}
               handleChangeCategory={handleChangeCategory}
             />
-            <PopularSection popular={popular} />
-            <RecommendSection recommends={recommends} />
+            <PopularSection popular={popular} navigation={navigation} />
+            <RecommendSection recommends={recommends} navigation={navigation} />
             <MenuType
               selectedCategoryId={selectedCategoryId}
               selectedMenuType={selectedMenuType}
@@ -85,7 +83,7 @@ const Home = () => {
                 width: 110,
               }}
               item={item}
-              onPress={() => console.log('Food card pressed')}
+              onPress={() => navigation.navigate('FoodDetail', {foodItem: item})}
             />
           );
         }}
